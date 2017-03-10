@@ -1,0 +1,7 @@
+[package]
+name = "err_prop"
+version = "0.0.1"
+authors = ["fulara <ntszar@gmail.com>"]
+
+[dependencies]
+cgmath = "0.12"

@@ -2,6 +2,11 @@
 name = "err_prop"
 version = "0.0.1"
 authors = ["fulara <ntszar@gmail.com>"]
+repository = "https://github.com/fulara/err_prop_rust"
+keywords = ["tree", "dimension" , "nearest", "search", "neighbor"]
+readme = "README.md"
+license = "Unlicense"
+description = """Super simple ( and stupid ) floating point error propagation calculating type."""
 
 [dependencies]
 cgmath = "0.12"

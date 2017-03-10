@@ -15,7 +15,7 @@ pub struct F64Err {
 }
 
 impl F64Err {
-    pub fn new_errorless(val: f64) -> F64Err {
+    pub fn new_errorfree(val: f64) -> F64Err {
         F64Err {
             val: val,
             err: 0.
@@ -151,7 +151,7 @@ impl ::std::cmp::PartialOrd for F64Err {
 
 impl Zero for F64Err {
     fn zero() -> Self {
-        Self::new_errorless(0.)
+        Self::new_errorfree(0.)
     }
 
     fn is_zero(&self) -> bool {
@@ -161,7 +161,7 @@ impl Zero for F64Err {
 
 impl One for F64Err {
     fn one() -> Self {
-        Self::new_errorless(1.)
+        Self::new_errorfree(1.)
     }
 }
 
@@ -247,8 +247,7 @@ impl NumCast for F64Err {
 impl Num for F64Err {
     type FromStrRadixErr = ParseFloatError;
     fn from_str_radix(src: &str, radix: u32) -> Result<Self, ParseFloatError> {
-        //todo finish me.
-        Ok(Self::new(0.))
+        unimplemented!();
     }
 }
 
@@ -510,8 +509,8 @@ mod tests {
 
     #[test]
     fn multiplication_error() {
-        let left = F64Err::new_errorless(2.);
-        let right = F64Err::new_errorless(2.);
+        let left = F64Err::new_errorfree(2.);
+        let right = F64Err::new_errorfree(2.);
 
         let res = left * right;
 
@@ -521,8 +520,8 @@ mod tests {
 
     #[test]
     fn addition_error() {
-        let left = F64Err::new_errorless(2.);
-        let right = F64Err::new_errorless(3.);
+        let left = F64Err::new_errorfree(2.);
+        let right = F64Err::new_errorfree(3.);
 
         let res = left + right;
 
@@ -532,8 +531,8 @@ mod tests {
 
     #[test]
     fn addition_then_multipl() {
-        let left = F64Err::new_errorless(2.);
-        let right = F64Err::new_errorless(3.);
+        let left = F64Err::new_errorfree(2.);
+        let right = F64Err::new_errorfree(3.);
 
         let res_add = left + right;
         let res_mul = res_add * left;
@@ -549,8 +548,8 @@ mod tests {
 
     #[test]
     fn subtract_error() {
-        let left = F64Err::new_errorless(2.);
-        let right = F64Err::new_errorless(3.);
+        let left = F64Err::new_errorfree(2.);
+        let right = F64Err::new_errorfree(3.);
 
         let res = left - right;
 

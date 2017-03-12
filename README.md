@@ -25,7 +25,7 @@ err: self.err / rhs.val.abs() + rhs.err * self.val / (rhs.val * rhs.val)
 ```
 After you are done with your calculations use the `.err()` method or better `.err_times_eps()` to get static upper bound value of accumulated error
 # bunch of method unimplemented!()
-There is bunch of methods which are unimplemented!(). Why? Because I needed to provide them however I did not them yet, so I just put unimplemented!().  
+There is bunch of methods which are unimplemented!(). Why? Because I needed to provide them however I did not needed them yet, so I just put unimplemented!().  
 Most important std::ops::* are implemented that is:  
 ```
 +, - , *, /

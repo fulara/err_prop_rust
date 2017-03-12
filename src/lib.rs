@@ -15,6 +15,7 @@ pub struct F64Err {
 }
 
 impl F64Err {
+    #[inline]
     pub fn new_errorfree(val: f64) -> F64Err {
         F64Err {
             val: val,
@@ -22,6 +23,7 @@ impl F64Err {
         }
     }
 
+    #[inline]
     pub fn new(val: f64) -> F64Err {
         F64Err {
             val: val,
@@ -29,6 +31,7 @@ impl F64Err {
         }
     }
 
+    #[inline]
     pub fn new_exact(val: f64, err: f64) -> F64Err {
         F64Err {
             val: val,
@@ -36,14 +39,17 @@ impl F64Err {
         }
     }
 
+    #[inline]
     pub fn val(&self) -> f64 {
         self.val
     }
 
+    #[inline]
     pub fn err(&self) -> f64 {
         self.err
     }
 
+    #[inline]
     pub fn err_times_eps(&self) -> f64 {
         self.err * ::std::f64::EPSILON
     }
@@ -51,6 +57,7 @@ impl F64Err {
 
 impl Mul for F64Err {
     type Output = F64Err;
+    #[inline]
     fn mul(self, rhs: Self) -> Self::Output {
         F64Err {
             val: self.val * rhs.val,
@@ -60,6 +67,7 @@ impl Mul for F64Err {
 }
 
 impl MulAssign for F64Err {
+    #[inline]
     fn mul_assign(&mut self, rhs: Self) {
         *self = *self * rhs
     }
@@ -67,6 +75,7 @@ impl MulAssign for F64Err {
 
 impl Div for F64Err {
     type Output = F64Err;
+    #[inline]
     fn div(self, rhs: Self) -> Self::Output {
         F64Err {
             val: self.val / rhs.val,
@@ -76,6 +85,7 @@ impl Div for F64Err {
 }
 
 impl DivAssign for F64Err {
+    #[inline]
     fn div_assign(&mut self, rhs: Self) {
         *self = *self / rhs
     }
@@ -83,6 +93,7 @@ impl DivAssign for F64Err {
 
 impl Add for F64Err {
     type Output = Self;
+    #[inline]
     fn add(self, rhs: Self) -> Self::Output {
         F64Err {
             val: self.val + rhs.val,
@@ -92,6 +103,7 @@ impl Add for F64Err {
 }
 
 impl AddAssign for F64Err {
+    #[inline]
     fn add_assign(&mut self, rhs: Self) {
         *self = *self + rhs
     }
@@ -99,6 +111,7 @@ impl AddAssign for F64Err {
 
 impl Sub for F64Err {
     type Output = Self;
+    #[inline]
     fn sub(self, rhs: Self) -> Self::Output {
         F64Err {
             val: self.val - rhs.val,
@@ -108,6 +121,7 @@ impl Sub for F64Err {
 }
 
 impl SubAssign for F64Err {
+    #[inline]
     fn sub_assign(&mut self, rhs: Self) {
         *self = *self - rhs
     }
@@ -115,18 +129,21 @@ impl SubAssign for F64Err {
 
 impl Rem for F64Err {
     type Output = Self;
+    #[inline]
     fn rem(self, rhs: Self) -> Self::Output {
         unimplemented!();
     }
 }
 
 impl RemAssign for F64Err {
+    #[inline]
     fn rem_assign(&mut self, rhs: Self) {
         *self = *self % rhs
     }
 }
 
 impl PartialOrd for F64Err {
+    #[inline]
     fn partial_min(self, other: Self) -> Self {
         if self.val < other.val {
             self
@@ -134,6 +151,7 @@ impl PartialOrd for F64Err {
             other
         }
     }
+    #[inline]
     fn partial_max(self, other: Self) -> Self {
         if self.val > other.val {
             self
@@ -144,22 +162,26 @@ impl PartialOrd for F64Err {
 }
 
 impl ::std::cmp::PartialOrd for F64Err {
+    #[inline]
     fn partial_cmp(&self, other: &Self) -> Option<::std::cmp::Ordering> {
         self.val.partial_cmp(&other.val)
     }
 }
 
 impl Zero for F64Err {
+    #[inline]
     fn zero() -> Self {
         Self::new_errorfree(0.)
     }
 
+    #[inline]
     fn is_zero(&self) -> bool {
         self.val.is_zero()
     }
 }
 
 impl One for F64Err {
+    #[inline]
     fn one() -> Self {
         Self::new_errorfree(1.)
     }
@@ -239,6 +261,7 @@ impl ToPrimitive for F64Err {
 }
 
 impl NumCast for F64Err {
+    #[inline]
     fn from<T>(t: T) -> Option<Self> {
         unimplemented!();
     }
@@ -246,6 +269,7 @@ impl NumCast for F64Err {
 
 impl Num for F64Err {
     type FromStrRadixErr = ParseFloatError;
+    #[inline]
     fn from_str_radix(src: &str, radix: u32) -> Result<Self, ParseFloatError> {
         unimplemented!();
     }
@@ -255,22 +279,27 @@ impl BaseNum for F64Err {}
 
 impl ApproxEq for F64Err {
     type Epsilon = Self;
+    #[inline]
     fn default_epsilon() -> Self::Epsilon {
         unimplemented!()
     }
 
+    #[inline]
     fn default_max_relative() -> Self::Epsilon {
         unimplemented!()
     }
 
+    #[inline]
     fn default_max_ulps() -> u32 {
         unimplemented!()
     }
 
+    #[inline]
     fn relative_eq(&self, other: &Self, epsilon: Self::Epsilon, max_relative: Self::Epsilon) -> bool {
         unimplemented!()
     }
 
+    #[inline]
     fn ulps_eq(&self, other: &Self, epsilon: Self::Epsilon, max_ulps: u32) -> bool {
         unimplemented!()
     }
@@ -278,224 +307,279 @@ impl ApproxEq for F64Err {
 
 impl Neg for F64Err {
     type Output = Self;
+    #[inline]
     fn neg(self) -> Self::Output {
         unimplemented!()
     }
 }
 
 impl Float for F64Err {
+    #[inline]
     fn nan() -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn infinity() -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn neg_infinity() -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn neg_zero() -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn min_value() -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn min_positive_value() -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn max_value() -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn is_nan(self) -> bool {
         unimplemented!()
     }
 
+    #[inline]
     fn is_infinite(self) -> bool {
         unimplemented!()
     }
 
+    #[inline]
     fn is_finite(self) -> bool {
         unimplemented!()
     }
 
+    #[inline]
     fn is_normal(self) -> bool {
         unimplemented!()
     }
 
+    #[inline]
     fn classify(self) -> FpCategory {
         unimplemented!()
     }
 
+    #[inline]
     fn floor(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn ceil(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn round(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn trunc(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn fract(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn abs(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn signum(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn is_sign_positive(self) -> bool {
         unimplemented!()
     }
 
+    #[inline]
     fn is_sign_negative(self) -> bool {
         unimplemented!()
     }
 
+    #[inline]
     fn mul_add(self, a: Self, b: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn recip(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn powi(self, n: i32) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn powf(self, n: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn sqrt(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn exp(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn exp2(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn ln(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn log(self, base: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn log2(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn log10(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn max(self, other: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn min(self, other: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn abs_sub(self, other: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn cbrt(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn hypot(self, other: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn sin(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn cos(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn tan(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn asin(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn acos(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn atan(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn atan2(self, other: Self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn sin_cos(self) -> (Self, Self) {
         unimplemented!()
     }
 
+    #[inline]
     fn exp_m1(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn ln_1p(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn sinh(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn cosh(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn tanh(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn asinh(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn acosh(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn atanh(self) -> Self {
         unimplemented!()
     }
 
+    #[inline]
     fn integer_decode(self) -> (u64, i16, i8) {
         unimplemented!()
     }
@@ -570,6 +654,6 @@ mod tests {
         let b = Point2::new(F64Err::new(1.), F64Err::new(0.));
 
         let det = ::cgmath::Matrix2::new(a.x, a.y,
-                               b.x, b.y).determinant();
+                                         b.x, b.y).determinant();
     }
 }

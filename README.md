@@ -1,4 +1,4 @@
-# err_prop [![Build Status](https://travis-ci.org/fulara/err_prop_rust.svg?branch=master)](https://travis-ci.org/fulara/err_prop_rust)
+# err_prop [![Build Status](https://travis-ci.org/fulara/err_prop_rust.svg?branch=master)](https://travis-ci.org/fulara/err_prop_rust)[![Build Status](https://img.shields.io/crates/v/err_prop.svg?branch=master)](https://crates.io/crates/err_prop)
 Super simple ( and stupid ) floating point type calculating upper bound of  error propagation
 I dont guarantee that this is correct. If you know you can do something better just contribute! :)  
 # how it works
